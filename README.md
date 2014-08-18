@@ -14,7 +14,7 @@ in `composer.json` add following in `require`:
 ```
 
 ### set configuration file (optional)
-run `php artisan configh:publish howlowck/socrata` then change the values according under `app/config/packages/howlowck/socrata/config.php`
+run `php artisan config:publish howlowck/socrata` then change the values according under `app/config/packages/howlowck/socrata/config.php`
 
 ### add service provider (optional)
 In `app/config/app.php` add the following in Service Provider
