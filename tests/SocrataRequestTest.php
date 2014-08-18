@@ -36,10 +36,4 @@ class SocrataRequestTest extends PHPUnit_Framework_TestCase
 		$req->retrieve(1);
 		$this->assertEquals('http://data.cityofchicago.org/resource/xef-ef/1.json', $req->buildUrl());
 	}
-
-//	public function testNewRequestReturnsGuzzleRequest() {
-//		$req = new Request('data.cityofchicago.org', 'gkur-vufi');
-//		$this->assertInstanceOf('GuzzleHttp\\Request', $req);
-//	}
-
 }

@@ -8,16 +8,33 @@ class Request implements RequestInterface {
 	protected $domain;
 	protected $identifier;
 	protected $resource;
+	protected $request;
 
-	protected $type;
+	protected $format;
 	protected $queriesArray = [];
 
-	function __construct($baseurl, $resource, $protocol = false, $type = 'json') {
+	function __construct($baseurl, $resource, $protocol = false, $format = 'json') {
 		$this->client = new Client();
 		$this->domain = $baseurl;
 		$this->resource = $resource;
 		$this->protocol = $protocol;
-		$this->type = $type;
+		$this->format = $format;
+	}
+
+	public function getRequest() {
+		return $this->request;
+	}
+
+	public function setRequest($request) {
+		return $this->request = $request;
+	}
+
+	public function token($token) {
+		$this->addQuery('$$app_token', $token);
+	}
+
+	public function format($format) {
+		$this->format = $format;
 	}
 
 	public function retrieve($id) {
@@ -76,29 +93,32 @@ class Request implements RequestInterface {
 		if ( !! $this->identifier) {
 			return $http . $this->domain . '/resource/' . $this->resource . '/' . $this->identifier . '.' . $this->type;
 		}
-		return $http . $this->domain . '/resource/' . $this->resource . '.' . $this->type;
+		return $http . $this->domain . '/resource/' . $this->resource . '.' . $this->format;
 	}
 
 	public function get() {
 		$req = $this->client->createRequest('GET', $this->buildUrl());
 		$req->setQuery($this->queriesArray);
-		return $this->client;
+
+		$this->setRequest($req);
+		$query = $req->getQuery();
+		$query->setEncodingType(false);
+		return $this->client->send($req);
 	}
 
 	public function post() {
-
+		//TODO
 	}
 
 	public function delete() {
-
+		//TODO
 	}
 
 	public function put() {
-
+		//TODO
 	}
 
 	public function __call($name, $args) {
 		$this->addQuery($name, $args[0]);
 	}
-
 }

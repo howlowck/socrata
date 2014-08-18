@@ -2,8 +2,8 @@
 
 class Socrata {
 	protected $baseUrl = 'http://opendata.socrata.com';
-	protected $secretToken = '';
-	protected $publicToken = '';
+	protected $secretToken = null;
+	protected $publicToken = null;
 
 	function __construct ($baseUrl = null, $secretToken = null, $publicToken = null) {
 		if ( ! is_null ($baseUrl)) {
@@ -17,9 +17,12 @@ class Socrata {
 		}
 	}
 
-	public function get($path) {
-		return $path . '!!!';
+	public function createRequest($resource) {
+		$req = new Request($this->baseUrl, $resource, $this->publicToken);
+		if ( ! is_null($this->publicToken)) {
+			$req->token($this->publicToken);
+		}
+		return $req;
 	}
-
 
 }
