@@ -17,9 +17,9 @@ in `composer.json` add following in `require`:
 run `php artisan config:publish howlowck/socrata` then change the values according under `app/config/packages/howlowck/socrata/config.php`
 
 ### add service provider (optional)
-In `app/config/app.php` add the following in Service Provider
+In `app/config/app.php` add the following in `providers`
 ```
-"Howlowck\Socrata\SocrataChicagoServiceProvider"
+'Howlowck\Socrata\SocrataChicagoServiceProvider',
 ```
 
 That will load the Socrata Chicago Data Portal routes, and register the wrapper as a singleton.

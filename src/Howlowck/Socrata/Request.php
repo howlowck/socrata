@@ -84,8 +84,14 @@ class Request implements RequestInterface {
 		if (is_array($value)) {
 			$value = implode(',', $value);
 		}
-		$this->queriesArray[$name] = $value;
+		$this->queriesArray[$name] = $this->encodeQuery($value);
 		return $this;
+	}
+
+	protected function encodeQuery($query) {
+		$result = $query;
+		$result = str_replace(' ', '%20', $result);
+		return $result;
 	}
 
 	public function buildUrl() {
