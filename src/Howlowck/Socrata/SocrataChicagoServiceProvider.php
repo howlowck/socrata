@@ -28,7 +28,7 @@ class SocrataChicagoServiceProvider extends ServiceProvider {
 			$config = $app['config']['socrata'] ?: $app['config']['socrata::config'];
 			$sec_token = $config['secret_token'];
 			$pub_token = $config['public_token'];
-			$url = $config['chicago'];
+			$url = $config['chicago_url'];
 			$soc = new Socrata($url, $sec_token, $pub_token);
 			return $soc;
 		});

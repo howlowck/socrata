@@ -1,7 +1,7 @@
 <?php
 
 return [
-	"secret_token" => $_ENV['socrata_secret_token'],
-	"public_token" => $_ENV['socrata_public_token'],
-	"chicago" => "data.cityofchicago.org",
+	"secret_token" => null,
+	"public_token" => null,
+	"chicago_url" => "data.cityofchicago.org",
 ];
