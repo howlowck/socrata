@@ -55,7 +55,7 @@ $request->select('zip');
 You can also run any [simple filters](http://dev.socrata.com/docs/filtering.html) as methods.  
 
 ```php
-$request->status('Completed');
+$req->service_request_number('11-00026951');
 ```
 
 **get Response**  
